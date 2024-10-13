@@ -67,6 +67,7 @@ class ShortcutDialog(QDialog):
             ("高亮模式", "Ctrl+H"),
             ("找素材模式", "Ctrl+F"),
             ("删除线", "Ctrl+Shift+D"),
+            # 添加更多快捷键说明
         ]
 
         for i, (action, shortcut) in enumerate(shortcuts):
@@ -265,39 +266,35 @@ class ElegantNoteApp(QMainWindow):
         color_action.setToolTip("更改文字颜色")
         editor_toolbar.addAction(color_action)
 
-        # 插入分割线
+        # 分割线
         separator_icon = get_icon_from_base64(separator_icon_base64)
-        separator_action = QAction(separator_icon, "插入分割线 (Ctrl+Shift+S)", self)
-        separator_action.setShortcut("Ctrl+Shift+S")
+        separator_action = QAction(separator_icon, "插入分割线", self)
         separator_action.triggered.connect(self.insert_separator)
-        separator_action.setToolTip("插入分割线 (Ctrl+Shift+S)")
+        separator_action.setToolTip("插入分割线")
         editor_toolbar.addAction(separator_action)
 
-        # 插入有序列表
+        # 有序列表
         ordered_list_icon = get_icon_from_base64(ordered_list_icon_base64)
-        ordered_list_action = QAction(ordered_list_icon, "插入有序列表 (Ctrl+Shift+O)", self)
-        ordered_list_action.setShortcut("Ctrl+Shift+O")
+        ordered_list_action = QAction(ordered_list_icon, "插入有序列表", self)
         ordered_list_action.triggered.connect(self.insert_ordered_list)
-        ordered_list_action.setToolTip("插入有序列表 (Ctrl+Shift+O)")
+        ordered_list_action.setToolTip("插入有序列表")
         editor_toolbar.addAction(ordered_list_action)
 
-        # 插入无序列表
+        # 无序列表
         unordered_list_icon = get_icon_from_base64(unordered_list_icon_base64)
-        unordered_list_action = QAction(unordered_list_icon, "插入无序列表 (Ctrl+Shift+U)", self)
-        unordered_list_action.setShortcut("Ctrl+Shift+U")
+        unordered_list_action = QAction(unordered_list_icon, "插入无序列表", self)
         unordered_list_action.triggered.connect(self.insert_unordered_list)
-        unordered_list_action.setToolTip("插入无序列表 (Ctrl+Shift+U)")
+        unordered_list_action.setToolTip("插入无序列表")
         editor_toolbar.addAction(unordered_list_action)
 
-        # 插入任务列表
+        # 任务列表
         task_list_icon = get_icon_from_base64(task_list_icon_base64)
-        task_list_action = QAction(task_list_icon, "插入任务列表 (Ctrl+Shift+T)", self)
-        task_list_action.setShortcut("Ctrl+Shift+T")
+        task_list_action = QAction(task_list_icon, "插入任务列表", self)
         task_list_action.triggered.connect(self.insert_task_list)
-        task_list_action.setToolTip("插入任务列表 (Ctrl+Shift+T)")
+        task_list_action.setToolTip("插入任务列表")
         editor_toolbar.addAction(task_list_action)
 
-        # 插入超链接
+        # 超链接
         link_icon = get_icon_from_base64(link_icon_base64)
         link_action = QAction(link_icon, "插入超链接 (Ctrl+K)", self)
         link_action.setShortcut("Ctrl+K")
@@ -305,71 +302,50 @@ class ElegantNoteApp(QMainWindow):
         link_action.setToolTip("插入超链接 (Ctrl+K)")
         editor_toolbar.addAction(link_action)
 
-        # 插入一级标题
+        # 一级标题
         h1_icon = get_icon_from_base64(h1_icon_base64)
-        h1_action = QAction(h1_icon, "插入一级标题 (Ctrl+Alt+1)", self)
-        h1_action.setShortcut("Ctrl+Alt+1")
+        h1_action = QAction(h1_icon, "插入一级标题", self)
         h1_action.triggered.connect(lambda: self.set_heading(1))
-        h1_action.setToolTip("插入一级标题 (Ctrl+Alt+1)")
+        h1_action.setToolTip("插入一级标题")
         editor_toolbar.addAction(h1_action)
 
-        # 插入二级标题
+        # 二级标题
         h2_icon = get_icon_from_base64(h2_icon_base64)
-        h2_action = QAction(h2_icon, "插入二级标题 (Ctrl+Alt+2)", self)
-        h2_action.setShortcut("Ctrl+Alt+2")
+        h2_action = QAction(h2_icon, "插入二级标题", self)
         h2_action.triggered.connect(lambda: self.set_heading(2))
-        h2_action.setToolTip("插入二级标题 (Ctrl+Alt+2)")
+        h2_action.setToolTip("插入二级标题")
         editor_toolbar.addAction(h2_action)
 
-        # 插入三级标题
+        # 三级标题
         h3_icon = get_icon_from_base64(h3_icon_base64)
-        h3_action = QAction(h3_icon, "插入三级标题 (Ctrl+Alt+3)", self)
-        h3_action.setShortcut("Ctrl+Alt+3")
+        h3_action = QAction(h3_icon, "插入三级标题", self)
         h3_action.triggered.connect(lambda: self.set_heading(3))
-        h3_action.setToolTip("插入三级标题 (Ctrl+Alt+3)")
+        h3_action.setToolTip("插入三级标题")
         editor_toolbar.addAction(h3_action)
 
         # 高亮模式
         highlight_icon = get_icon_from_base64(highlight_icon_base64)
-        self.highlight_action = QAction(highlight_icon, "高亮模式 (Ctrl+H)", self)
-        self.highlight_action.setShortcut("Ctrl+H")
-        self.highlight_action.setToolTip("高亮模式 (Ctrl+H)")
+        self.highlight_action = QAction(highlight_icon, "高亮模式", self)
+        self.highlight_action.setToolTip("高亮模式")
         self.highlight_action.setCheckable(True)
         self.highlight_action.triggered.connect(self.toggle_highlight_mode)
         editor_toolbar.addAction(self.highlight_action)
 
         # 找素材模式
         find_material_icon = get_icon_from_base64(find_material_icon_base64)
-        self.find_material_action = QAction(find_material_icon, "找素材模式 (Ctrl+F)", self)
-        self.find_material_action.setShortcut("Ctrl+F")
-        self.find_material_action.setToolTip("找素材模式 (Ctrl+F)")
+        self.find_material_action = QAction(find_material_icon, "找素材模式", self)
+        self.find_material_action.setToolTip("找素材模式")
         self.find_material_action.setCheckable(True)
         self.find_material_action.triggered.connect(self.toggle_find_material_mode)
         editor_toolbar.addAction(self.find_material_action)
 
         # 删除线
         strikethrough_icon = get_icon_from_base64(strikethrough_icon_base64)
-        strikethrough_action = QAction(strikethrough_icon, "删除线 (Ctrl+Shift+D)", self)
-        strikethrough_action.setShortcut("Ctrl+Shift+D")
+        strikethrough_action = QAction(strikethrough_icon, "删除线 (Ctrl+D)", self)
+        strikethrough_action.setShortcut("Ctrl+D")
         strikethrough_action.triggered.connect(self.set_strikethrough)
-        strikethrough_action.setToolTip("删除线 (Ctrl+Shift+D)")
+        strikethrough_action.setToolTip("删除线 (Ctrl+D)")
         editor_toolbar.addAction(strikethrough_action)
-
-        # 撤销
-        undo_action = QAction(QIcon(), "撤销 (Ctrl+Z)", self)
-        undo_action.setShortcut("Ctrl+Z")
-        undo_action.triggered.connect(self.note_editor.undo)
-        undo_action.setToolTip("撤销 (Ctrl+Z)")
-        editor_toolbar.addWidget(QWidget())  # Spacer
-        editor_toolbar.addAction(undo_action)
-
-        # 恢复
-        redo_action = QAction(QIcon(), "恢复 (Ctrl+Y)", self)
-        redo_action.setShortcut("Ctrl+Y")
-        redo_action.triggered.connect(self.note_editor.redo)
-        redo_action.setToolTip("恢复 (Ctrl+Y)")
-        editor_toolbar.addWidget(QWidget())  # Spacer
-        editor_toolbar.addAction(redo_action)
 
         # 设置按钮均匀分布
         editor_toolbar.setMovable(False)  # 防止工具栏被移动
@@ -927,49 +903,41 @@ class ElegantNoteApp(QMainWindow):
         content = QWidget()
         scroll.setWidget(content)
 
-        layout = QGridLayout(content)
-        layout.setSpacing(10)  # 设置行间距
+        layout = QVBoxLayout(content)
 
         shortcuts = [
             {"功能": "加粗", "快捷键": "Ctrl+B"},
             {"功能": "斜体", "快捷键": "Ctrl+I"},
             {"功能": "下划线", "快捷键": "Ctrl+U"},
-            {"功能": "插入分割线", "快捷键": "Ctrl+Shift+S"},
-            {"功能": "插入有序列表", "快捷键": "Ctrl+Shift+O"},
-            {"功能": "插入无序列表", "快捷键": "Ctrl+Shift+U"},
-            {"功能": "插入任务列表", "快捷键": "Ctrl+Shift+T"},
-            {"功能": "插入超链接", "快捷键": "Ctrl+K"},
-            {"功能": "插入一级标题", "快捷键": "Ctrl+Alt+1"},
-            {"功能": "插入二级标题", "快捷键": "Ctrl+Alt+2"},
-            {"功能": "插入三级标题", "快捷键": "Ctrl+Alt+3"},
-            {"功能": "高亮模式", "快捷键": "Ctrl+H"},
-            {"功能": "找素材模式", "快捷键": "Ctrl+F"},
-            {"功能": "删除线", "快捷键": "Ctrl+Shift+D"},
+            {"功能": "更改文字颜色", "快捷键": ""},
+            {"功能": "插入分割线", "快捷键": ""},
+            {"功能": "插入有序列表", "快捷键": ""},
+            {"功能": "插入无序列表", "快捷键": ""},
+            {"功能": "插入任务列表", "快捷键": ""},
+            {"功能": "插入超链接", "快捷键": ""},
+            {"功能": "插入一级标题", "快捷键": ""},
+            {"功能": "插入二级标题", "快捷键": ""},
+            {"功能": "插入三级标题", "快捷键": ""},
+            {"功能": "高亮模式", "快捷键": ""},
+            {"功能": "找素材模式", "快捷键": ""},
+            {"功能": "删除线", "快捷键": ""},
             {"功能": "撤销", "快捷键": "Ctrl+Z"},
             {"功能": "恢复", "快捷键": "Ctrl+Y"},
         ]
 
-        for i, shortcut in enumerate(shortcuts):
-            label_action = QLabel(shortcut["功能"])
-            label_shortcut = QLabel(shortcut["快捷键"])
-            label_action.setStyleSheet("font-size: 14px;")
-            label_shortcut.setStyleSheet("font-size: 14px; font-weight: bold;")
-            layout.addWidget(label_action, i, 0, alignment=Qt.AlignLeft)
-            layout.addWidget(label_shortcut, i, 1, alignment=Qt.AlignRight)
+        for shortcut in shortcuts:
+            label = QLabel(f"{shortcut['功能']}：{shortcut['快捷键']}")
+            label.setStyleSheet("font-size: 14px;")
+            layout.addWidget(label)
 
-        scroll_content = QWidget()
-        scroll_content.setLayout(layout)
-        scroll.setWidget(scroll_content)
-
-        main_layout = QVBoxLayout(dialog)
-        main_layout.addWidget(scroll)
+        dialog_layout = QVBoxLayout(dialog)
+        dialog_layout.addWidget(scroll)
 
         # 添加关闭按钮
         close_button = QPushButton("关闭", dialog)
         close_button.clicked.connect(dialog.accept)
-        main_layout.addWidget(close_button, alignment=Qt.AlignRight)
+        dialog_layout.addWidget(close_button)
 
-        dialog.setLayout(main_layout)
         dialog.exec_()
 
     def eventFilter(self, source, event):
